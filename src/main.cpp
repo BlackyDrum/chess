@@ -84,14 +84,49 @@ private:
 
 public:
     Chess();
+    /*
+    * Load Textures, Images and Sound Files
+    */
     bool loadAssets();
-    void drawBoard();
+
+    /*
+    * Updates the board and pieces, whenever a piece changed it's position
+    */
+    void updateBoard();
+
+    /*
+    * Calculates all possibilities for the current piece clicked by the player
+    */
     void move(sf::RenderWindow&);
+
+    /*
+    * Deletes the pieces from the board, whenever they are taken by the opposite side
+    */
     void deletePieces(int, int);
+
+    /*
+    * Calculates the positions of the circles
+    */
     void setCircle();
+
+    /*
+    * Draws the circles on the board
+    */
     void drawCircle(sf::RenderWindow&);
+
+    /*
+    * Removes all circles from the board
+    */
     void deleteCircle();
+
+    /*
+    * Set transparency of a piece when it can be taken by the opposite side
+    */
     void setPieceTransparency();
+
+    /*
+    * Pawn being replaced by a queen, when it reaches the opposite side
+    */
     void pawnPromotion();
 
     sf::Sprite getBoard() const { return m_board; }
@@ -1155,7 +1190,7 @@ bool Chess::loadAssets() {
 
     return true;
 }
-void Chess::drawBoard() {
+void Chess::updateBoard() {
    /*
     * Initialize starting position
     * Black Pieces:
@@ -2337,7 +2372,7 @@ int main()
         }
         game.setCircle();
         game.setPieceTransparency();
-        game.drawBoard();
+        game.updateBoard();
         game.drawCircle(window);
         game.pawnPromotion();
         window.clear();

@@ -1,6 +1,6 @@
 # cpp-sfml-chess
 
-C++/SFML - My attempt to Chess.
+C++/SFML - Chess.
 
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/111639941/218287184-0de5b516-d4b7-4e7a-91e5-2610c6976b77.gif)
 

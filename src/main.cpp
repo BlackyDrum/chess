@@ -231,7 +231,6 @@ void Chess::drawCircle(sf::RenderWindow& window) {
             if (m_circleBoard[i][j] && m_canTakeBoard[i][j] == 0) {
                 m_circles[counter].setPosition(j * tileSize + 40, i * tileSize +  40);
                 m_circles[counter].setRadius(5);
-                
                 counter++;
           
             }
@@ -1216,6 +1215,15 @@ void Chess::move(sf::RenderWindow& window) {
             m_currentPieceClicked = a_board[row][col];
             m_currentPiecePosition.x = row;
             m_currentPiecePosition.y = col;
+            for (int i = 0; i < m_pieces.size(); i++) {
+                m_pieces[i].setColor(sf::Color(255, 255, 255, 255));
+            }
+            for (int i = 0; i < fields; i++) {
+                for (int j = 0; j < fields; j++) {
+                    m_canTakeBoard[i][j] = 0;
+                }
+
+            }
 
             return;
         }
@@ -1571,6 +1579,15 @@ void Chess::move(sf::RenderWindow& window) {
             m_currentPieceClicked = a_board[row][col];
             m_currentPiecePosition.x = row;
             m_currentPiecePosition.y = col;
+            for (int i = 0; i < m_pieces.size(); i++) {
+                m_pieces[i].setColor(sf::Color(255, 255, 255, 255));
+            }
+            for (int i = 0; i < fields; i++) {
+                for (int j = 0; j < fields; j++) {
+                    m_canTakeBoard[i][j] = 0;
+                }
+
+            }
             return;
         }
         m_pieceClicked = false;

@@ -13,7 +13,6 @@ Download the latest release : Not released yet
 - En Passant
 - Castle
 - Check for check
-- Pawn Promotion
 
 
 # How to run main.cpp

@@ -9,6 +9,11 @@ C++/SFML - Chess.
 # How to run
 Download the latest release : Not released yet
 
+## Not Implemented yet
+- En Passant
+- Castle
+- Check for check
+- Pawn Promotion
 
 
 # How to run main.cpp

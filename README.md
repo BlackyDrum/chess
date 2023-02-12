@@ -7,7 +7,7 @@ C++/SFML - Chess.
 
 
 # How to run
-Download the latest release : Not released yet
+Download the latest release : https://github.com/BlackyDrum/cpp-sfml-chess/releases
 
 ## Not Implemented yet
 - En Passant

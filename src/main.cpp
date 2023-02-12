@@ -31,6 +31,9 @@ private:
 
     std::vector<sf::CircleShape> m_circles;
 
+    std::vector<sf::Sprite> m_pawnPromotionQueensW;
+    std::vector<sf::Sprite> m_pawnPromotionQueensB;
+
     sf::SoundBuffer b_pieceMove;
     sf::Sound s_pieceMove;
     sf::SoundBuffer b_capture;
@@ -71,6 +74,9 @@ private:
     bool m_circleBoard[fields][fields] = { false };
     int m_canTakeBoard[fields][fields] = { 0 };
 
+    int m_pawnPromotionCounterW;
+    int m_pawnPromotionCounterB;
+
     bool m_whiteTurn;
     bool m_pieceClicked;
     int m_currentPieceClicked;
@@ -86,16 +92,21 @@ public:
     void drawCircle(sf::RenderWindow&);
     void deleteCircle();
     void setPieceTransparency();
+    void pawnPromotion();
 
     sf::Sprite getBoard() const { return m_board; }
     std::vector<sf::Sprite> getPieces() const { return m_pieces; }
     std::vector<sf::CircleShape> getCircle() const { return m_circles; }
+    std::vector<sf::Sprite> getPawnPromotionQueensW() const { return m_pawnPromotionQueensW; }
+    std::vector<sf::Sprite> getPawnPromotionQueensB() const { return m_pawnPromotionQueensB; }
     
 };
 
 Chess::Chess() {
     m_whiteTurn = true;
     m_pieceClicked = false;
+    m_pawnPromotionCounterW = 0;
+    m_pawnPromotionCounterB = 0;
 
     for (int i = 0; i < fields * fields; i++) {
         sf::CircleShape c;
@@ -180,6 +191,42 @@ void Chess::setPieceTransparency() {
                 if (m_canTakeBoard[i][j] == 11)
                     m_pieces[23].setColor(sf::Color(255, 255, 255, 128));
 
+
+
+                if (m_canTakeBoard[i][j] == 41)
+                    m_pawnPromotionQueensW[0].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == 42)
+                    m_pawnPromotionQueensW[1].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == 43)
+                    m_pawnPromotionQueensW[2].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == 44)
+                    m_pawnPromotionQueensW[3].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == 45)
+                    m_pawnPromotionQueensW[4].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == 46)
+                    m_pawnPromotionQueensW[5].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == 47)
+                    m_pawnPromotionQueensW[6].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == 48)
+                    m_pawnPromotionQueensW[7].setColor(sf::Color(255, 255, 255, 128));
+
+                if (m_canTakeBoard[i][j] == -41)
+                    m_pawnPromotionQueensB[0].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == -42)
+                    m_pawnPromotionQueensB[1].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == -43)
+                    m_pawnPromotionQueensB[2].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == -44)
+                    m_pawnPromotionQueensB[3].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == -45)
+                    m_pawnPromotionQueensB[4].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == -46)
+                    m_pawnPromotionQueensB[5].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == -47)
+                    m_pawnPromotionQueensB[6].setColor(sf::Color(255, 255, 255, 128));
+                if (m_canTakeBoard[i][j] == -48)
+                    m_pawnPromotionQueensB[7].setColor(sf::Color(255, 255, 255, 128));
+
         }
         
     }
@@ -202,6 +249,15 @@ void Chess::setPieceTransparency() {
             m_pieces[21].setColor(sf::Color(255, 255, 255, 255));
             m_pieces[22].setColor(sf::Color(255, 255, 255, 255));
             m_pieces[23].setColor(sf::Color(255, 255, 255, 255));
+
+            m_pawnPromotionQueensW[0].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensW[1].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensW[2].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensW[3].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensW[4].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensW[5].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensW[6].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensW[7].setColor(sf::Color(255, 255, 255, 255));
     }
     else {
             m_pieces[8].setColor(sf::Color(255, 255, 255, 255));
@@ -221,6 +277,15 @@ void Chess::setPieceTransparency() {
             m_pieces[5].setColor(sf::Color(255, 255, 255, 255));
             m_pieces[6].setColor(sf::Color(255, 255, 255, 255));
             m_pieces[7].setColor(sf::Color(255, 255, 255, 255));
+
+            m_pawnPromotionQueensB[0].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensB[1].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensB[2].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensB[3].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensB[4].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensB[5].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensB[6].setColor(sf::Color(255, 255, 255, 255));
+            m_pawnPromotionQueensB[7].setColor(sf::Color(255, 255, 255, 255));
     }
 
 }
@@ -442,7 +507,8 @@ void Chess::setCircle() {
                 m_circleBoard[i][j] = true;
             }
         }
-        else if (m_currentPieceClicked == 40) {
+        else if (m_currentPieceClicked == 40 || m_currentPieceClicked == 41 || m_currentPieceClicked == 42 || m_currentPieceClicked == 43 || m_currentPieceClicked == 44
+                || m_currentPieceClicked == 45 || m_currentPieceClicked == 46 || m_currentPieceClicked == 47 || m_currentPieceClicked == 48) {
             for (int i = m_currentPiecePosition.x, j = m_currentPiecePosition.y; i >= 0 && j >= 0; i--, j--) {
                 if (i == m_currentPiecePosition.x && j == m_currentPiecePosition.y)
                     continue;
@@ -789,7 +855,8 @@ void Chess::setCircle() {
             }
 
         }
-        else if (m_currentPieceClicked == -40) {
+        else if (m_currentPieceClicked == -40 || m_currentPieceClicked == -41 || m_currentPieceClicked == -42 || m_currentPieceClicked == -43 || m_currentPieceClicked == -44
+            || m_currentPieceClicked == -45 || m_currentPieceClicked == -46 || m_currentPieceClicked == -47 || m_currentPieceClicked == -48) {
             for (int i = m_currentPiecePosition.x; i >= 0; i--) {
                 if (i == m_currentPiecePosition.x)
                     continue;
@@ -1030,6 +1097,19 @@ bool Chess::loadAssets() {
     }
 
 
+    for (int i = 0; i < fields; i++) {
+        sf::Sprite queen;
+        queen.setTexture(t_whiteQueen);
+        queen.setScale(0, 0);
+        m_pawnPromotionQueensW.push_back(queen);
+    }
+    for (int i = 0; i < fields; i++) {
+        sf::Sprite queen;
+        queen.setTexture(t_blackQueen);
+        queen.setScale(0, 0);
+        m_pawnPromotionQueensB.push_back(queen);
+    }
+
     sf::Sprite whiteRook;
     whiteRook.setTexture(t_whiteRook);
     m_pieces.push_back(whiteRook);
@@ -1190,6 +1270,40 @@ void Chess::drawBoard() {
             if (a_board[i][j] == 67)
                 m_pieces[31].setPosition(tileSize * j + offset, tileSize * i + offset);
 
+            if (a_board[i][j] == 41)
+                m_pawnPromotionQueensW[0].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == 42)
+                m_pawnPromotionQueensW[1].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == 43)
+                m_pawnPromotionQueensW[2].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == 44)
+                m_pawnPromotionQueensW[3].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == 45)
+                m_pawnPromotionQueensW[4].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == 46)
+                m_pawnPromotionQueensW[5].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == 47)
+                m_pawnPromotionQueensW[6].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == 48)
+                m_pawnPromotionQueensW[7].setPosition(tileSize * j + offset, tileSize * i + offset);
+
+            if (a_board[i][j] == -41)
+                m_pawnPromotionQueensB[0].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == -42)
+                m_pawnPromotionQueensB[1].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == -43)
+                m_pawnPromotionQueensB[2].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == -44)
+                m_pawnPromotionQueensB[3].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == -45)
+                m_pawnPromotionQueensB[4].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == -46)
+                m_pawnPromotionQueensB[5].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == -47)
+                m_pawnPromotionQueensB[6].setPosition(tileSize * j + offset, tileSize * i + offset);
+            if (a_board[i][j] == -48)
+                m_pawnPromotionQueensB[7].setPosition(tileSize * j + offset, tileSize * i + offset);
+
         }
     }
 
@@ -1198,7 +1312,7 @@ void Chess::move(sf::RenderWindow& window) {
 
     int row = sf::Mouse::getPosition(window).y / tileSize;
     int col = sf::Mouse::getPosition(window).x / tileSize;
-
+    std::cout << a_board[row][col] << std::endl;
 
     if (!m_pieceClicked) {
         m_pieceClicked = true;
@@ -1217,6 +1331,10 @@ void Chess::move(sf::RenderWindow& window) {
             m_currentPiecePosition.y = col;
             for (int i = 0; i < m_pieces.size(); i++) {
                 m_pieces[i].setColor(sf::Color(255, 255, 255, 255));
+            }
+            for (int i = 0; i < m_pawnPromotionQueensW.size(); i++) {
+                m_pawnPromotionQueensW[i].setColor(sf::Color(255, 255, 255, 255));
+                m_pawnPromotionQueensB[i].setColor(sf::Color(255, 255, 255, 255));
             }
             for (int i = 0; i < fields; i++) {
                 for (int j = 0; j < fields; j++) {
@@ -1431,7 +1549,8 @@ void Chess::move(sf::RenderWindow& window) {
                 s_pieceMove.play();
             }
         }
-        else if (m_currentPieceClicked == 40) {
+        else if (m_currentPieceClicked == 40 || m_currentPieceClicked == 41 || m_currentPieceClicked == 42 || m_currentPieceClicked == 43 || m_currentPieceClicked == 44
+                 || m_currentPieceClicked == 45 || m_currentPieceClicked == 46 || m_currentPieceClicked == 47 || m_currentPieceClicked == 48) {
             for (int i = m_currentPiecePosition.x, j = m_currentPiecePosition.y; i >= 0 && j >= 0; i--, j--) {
                 if (i == m_currentPiecePosition.x && j == m_currentPiecePosition.y)
                     continue;
@@ -1581,6 +1700,10 @@ void Chess::move(sf::RenderWindow& window) {
             m_currentPiecePosition.y = col;
             for (int i = 0; i < m_pieces.size(); i++) {
                 m_pieces[i].setColor(sf::Color(255, 255, 255, 255));
+            }
+            for (int i = 0; i < m_pawnPromotionQueensW.size(); i++) {
+                m_pawnPromotionQueensW[i].setColor(sf::Color(255, 255, 255, 255));
+                m_pawnPromotionQueensB[i].setColor(sf::Color(255, 255, 255, 255));
             }
             for (int i = 0; i < fields; i++) {
                 for (int j = 0; j < fields; j++) {
@@ -1785,7 +1908,8 @@ void Chess::move(sf::RenderWindow& window) {
                 s_pieceMove.play();
             }
         }
-        else if (m_currentPieceClicked == -40) {
+        else if (m_currentPieceClicked == -40 || m_currentPieceClicked == -41 || m_currentPieceClicked == -42 || m_currentPieceClicked == -43 || m_currentPieceClicked == -44
+            || m_currentPieceClicked == -45 || m_currentPieceClicked == -46 || m_currentPieceClicked == -47 || m_currentPieceClicked == -48) {
             for (int i = m_currentPiecePosition.x; i >= 0; i--) {
                 if (i == m_currentPiecePosition.x)
                     continue;
@@ -2070,7 +2194,123 @@ void Chess::deletePieces(int row, int col) {
         s_capture.play();
     }
 
+
+    if (a_board[row][col] == 41) {
+        m_pawnPromotionQueensW[0].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == 42) {
+        m_pawnPromotionQueensW[1].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == 43) {
+        m_pawnPromotionQueensW[2].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == 44) {
+        m_pawnPromotionQueensW[3].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == 45) {
+        m_pawnPromotionQueensW[4].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == 46) {
+        m_pawnPromotionQueensW[5].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == 47) {
+        m_pawnPromotionQueensW[6].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == 48) {
+        m_pawnPromotionQueensW[7].setScale(0, 0);;
+        s_capture.play();
+    }
+
+    if (a_board[row][col] == -41) {
+        m_pawnPromotionQueensB[0].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == -42) {
+        m_pawnPromotionQueensB[1].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == -43) {
+        m_pawnPromotionQueensB[2].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == -44) {
+        m_pawnPromotionQueensB[3].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == -45) {
+        m_pawnPromotionQueensB[4].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == -46) {
+        m_pawnPromotionQueensB[5].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == -47) {
+        m_pawnPromotionQueensB[6].setScale(0, 0);
+        s_capture.play();
+    }
+    if (a_board[row][col] == -48) {
+        m_pawnPromotionQueensB[7].setScale(0, 0);
+        s_capture.play();
+    }
+
     
+}
+void Chess::pawnPromotion() {
+    int offset = 16;
+    for (int i = 0; i < fields; i++) {
+        if (a_board[0][i] >= 60 && a_board[0][i] <= 67) {
+            if (a_board[0][i] == 60)
+                m_pieces[24].setScale(0, 0);
+            if (a_board[0][i] == 61)
+                m_pieces[25].setScale(0, 0);
+            if (a_board[0][i] == 62)
+                m_pieces[26].setScale(0, 0);
+            if (a_board[0][i] == 63)
+                m_pieces[27].setScale(0, 0);
+            if (a_board[0][i] == 64)
+                m_pieces[28].setScale(0, 0);
+            if (a_board[0][i] == 65)
+                m_pieces[29].setScale(0, 0);
+            if (a_board[0][i] == 66)
+                m_pieces[30].setScale(0, 0);
+            if (a_board[0][i] == 67)
+                m_pieces[31].setScale(0, 0);
+            a_board[0][i] = 41 + m_pawnPromotionCounterW;
+            m_pawnPromotionQueensW[m_pawnPromotionCounterW].setScale(0.5, 0.5);
+            m_pawnPromotionQueensW[m_pawnPromotionCounterW].setPosition(i * tileSize + offset, offset);
+            m_pawnPromotionCounterW++;
+        }
+        else if (a_board[7][i] <= -60 && a_board[7][i] >= -67) {
+            if (a_board[7][i] == -60)
+                m_pieces[8].setScale(0, 0);
+            if (a_board[7][i] == -61)
+                m_pieces[9].setScale(0, 0);
+            if (a_board[7][i] == -62)
+                m_pieces[10].setScale(0, 0);
+            if (a_board[7][i] == -63)
+                m_pieces[11].setScale(0, 0);
+            if (a_board[7][i] == -64)
+                m_pieces[12].setScale(0, 0);
+            if (a_board[7][i] == -65)
+                m_pieces[13].setScale(0, 0);
+            if (a_board[7][i] == -66)
+                m_pieces[14].setScale(0, 0);
+            if (a_board[7][i] == -67)
+                m_pieces[15].setScale(0, 0);
+            a_board[7][i] = -41 - m_pawnPromotionCounterB;
+            m_pawnPromotionQueensB[m_pawnPromotionCounterB].setScale(0.5, 0.5);
+            m_pawnPromotionQueensB[m_pawnPromotionCounterB].setPosition(i * tileSize + offset, 7 * tileSize + offset);
+            m_pawnPromotionCounterB++;
+        }
+    }
 }
 
 int main()
@@ -2099,12 +2339,17 @@ int main()
         game.setPieceTransparency();
         game.drawBoard();
         game.drawCircle(window);
+        game.pawnPromotion();
         window.clear();
         window.draw(game.getBoard());
 
         for (auto& c : game.getCircle())
             window.draw(c);
         for (auto& p : game.getPieces())
+            window.draw(p);
+        for (auto& p : game.getPawnPromotionQueensB())
+            window.draw(p);
+        for (auto& p : game.getPawnPromotionQueensW())
             window.draw(p);
 
         

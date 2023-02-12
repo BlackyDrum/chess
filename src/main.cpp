@@ -79,6 +79,14 @@ private:
 
     bool m_whiteTurn;
     bool m_pieceClicked;
+
+    bool m_whiteKingMoved;
+    bool m_blackKingMoved;
+    bool m_whiteLeftRookMoved;
+    bool m_whiteRightRookMoved;
+    bool m_blackRightRookMoved;
+    bool m_blackLeftRookMoved;
+
     int m_currentPieceClicked;
     sf::Vector2i m_currentPiecePosition;
 
@@ -129,6 +137,7 @@ public:
     */
     void pawnPromotion();
 
+
     sf::Sprite getBoard() const { return m_board; }
     std::vector<sf::Sprite> getPieces() const { return m_pieces; }
     std::vector<sf::CircleShape> getCircle() const { return m_circles; }
@@ -142,6 +151,13 @@ Chess::Chess() {
     m_pieceClicked = false;
     m_pawnPromotionCounterW = 0;
     m_pawnPromotionCounterB = 0;
+
+    bool m_whiteKingMoved = false;
+    bool m_blackKingMoved = false;
+    bool m_whiteLeftRookMoved = false;
+    bool m_whiteRightRookMoved = false;
+    bool m_blackRightRookMoved = false;
+    bool m_blackLeftRookMoved = false;
 
     for (int i = 0; i < fields * fields; i++) {
         sf::CircleShape c;
@@ -697,6 +713,22 @@ void Chess::setCircle() {
                 if (a_board[m_currentPiecePosition.x][m_currentPiecePosition.y + 1] < 0)
                     m_canTakeBoard[m_currentPiecePosition.x][m_currentPiecePosition.y + 1] = a_board[m_currentPiecePosition.x][m_currentPiecePosition.y + 1];
             }
+
+
+            if (!m_whiteKingMoved && !m_whiteRightRookMoved) {
+                if (a_board[7][6] == 0 && a_board[7][5] == 0) {
+                    m_circleBoard[7][6] = true;
+
+                }
+            }
+            if (!m_whiteKingMoved && !m_whiteLeftRookMoved) {
+                if (a_board[7][1] == 0 && a_board[7][2] == 0 && a_board[7][3] == 0) {
+                    m_circleBoard[7][2] = true;
+
+                }
+            }
+            
+
         }
         if (m_currentPieceClicked <= -60 && m_currentPieceClicked >= -67) {
             if (m_currentPiecePosition.x == 1) {
@@ -1042,6 +1074,20 @@ void Chess::setCircle() {
                     m_circleBoard[m_currentPiecePosition.x][m_currentPiecePosition.y + 1] = true;
                 if (a_board[m_currentPiecePosition.x][m_currentPiecePosition.y + 1] > 0)
                     m_canTakeBoard[m_currentPiecePosition.x][m_currentPiecePosition.y + 1] = a_board[m_currentPiecePosition.x][m_currentPiecePosition.y + 1];
+            }
+
+
+            if (!m_blackKingMoved && !m_blackRightRookMoved) {
+                if (a_board[0][6] == 0 && a_board[0][5] == 0) {
+                    m_circleBoard[0][6] = true;
+
+                }
+            }
+            if (!m_blackKingMoved && !m_blackLeftRookMoved) {
+                if (a_board[0][1] == 0 && a_board[0][2] == 0 && a_board[0][3] == 0) {
+                    m_circleBoard[0][2] = true;
+
+                }
             }
         }
     }
@@ -1479,6 +1525,11 @@ void Chess::move(sf::RenderWindow& window) {
             }
 
             if (b_board[row][col]) {
+                if (m_currentPieceClicked == 10)
+                    m_whiteLeftRookMoved = true;
+                if (m_currentPieceClicked == 11)
+                    m_whiteRightRookMoved = true;
+
                 deletePieces(row, col);
                 a_board[row][col] = m_currentPieceClicked;
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
@@ -1719,11 +1770,37 @@ void Chess::move(sf::RenderWindow& window) {
                     b_board[m_currentPiecePosition.x][m_currentPiecePosition.y + 1] = true;
             }
 
+            bool castleWithRightRook = false;
+            bool castleWithLeftRook = false;
+            if (!m_whiteKingMoved && !m_whiteRightRookMoved) {
+                if (a_board[7][6] == 0 && a_board[7][5] == 0) {
+                    b_board[7][6] = true;
+                    castleWithRightRook = true;
+                }
+            }
+            if (!m_whiteKingMoved && !m_whiteLeftRookMoved) {
+                if (a_board[7][1] == 0 && a_board[7][2] == 0 && a_board[7][3] == 0) {
+                    b_board[7][2] = true;
+                    castleWithLeftRook = true;
+                }
+            }
+
             if (b_board[row][col]) {
                 deletePieces(row, col);
                 a_board[row][col] = m_currentPieceClicked;
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = false;
+                if (castleWithRightRook && row == 7 && col == 6) {
+                    a_board[7][7] = 0;
+                    a_board[7][5] = 11;
+                    m_whiteRightRookMoved = true;
+                }
+                if (castleWithLeftRook && row == 7 && col == 2) {
+                    a_board[7][0] = 0;
+                    a_board[7][3] = 10;
+                    m_whiteLeftRookMoved = true;
+                }
+                m_whiteKingMoved = true;
                 s_pieceMove.play();
             }
         }
@@ -1838,6 +1915,11 @@ void Chess::move(sf::RenderWindow& window) {
             }
 
             if (b_board[row][col]) {
+                if (m_currentPieceClicked == -10)
+                    m_blackLeftRookMoved = true;
+                if (m_currentPieceClicked == -11)
+                    m_blackRightRookMoved = true;
+
                 deletePieces(row, col);
                 a_board[row][col] = m_currentPieceClicked;
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
@@ -2077,11 +2159,37 @@ void Chess::move(sf::RenderWindow& window) {
                     b_board[m_currentPiecePosition.x][m_currentPiecePosition.y + 1] = true;
             }
 
+            bool castleWithRightRook = false;
+            bool castleWithLeftRook = false;
+            if (!m_blackKingMoved && !m_blackRightRookMoved) {
+                if (a_board[0][6] == 0 && a_board[0][5] == 0) {
+                    b_board[0][6] = true;
+                    castleWithRightRook = true;
+                }
+            }
+            if (!m_blackKingMoved && !m_blackLeftRookMoved) {
+                if (a_board[0][1] == 0 && a_board[0][2] == 0 && a_board[0][3] == 0) {
+                    b_board[0][2] = true;
+                    castleWithLeftRook = true;
+                }
+            }
+
             if (b_board[row][col]) {
                 deletePieces(row, col);
                 a_board[row][col] = m_currentPieceClicked;
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = true;
+                if (castleWithRightRook && row == 0 && col == 6) {
+                    a_board[0][7] = 0;
+                    a_board[0][5] = -11;
+                    m_blackRightRookMoved = true;
+                }
+                if (castleWithLeftRook && row == 0 && col == 2) {
+                    a_board[0][0] = 0;
+                    a_board[0][3] = -10;
+                    m_blackLeftRookMoved = true;
+                }
+                m_blackKingMoved = true;
                 s_pieceMove.play();
             }
         }

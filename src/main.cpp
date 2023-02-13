@@ -1957,7 +1957,7 @@ void Chess::move(sf::RenderWindow& window) {
                 if (m_currentPiecePosition.x - 1 >= 0 && (a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 2] > 0 || a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 2] == 0)) {
                     b_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 2] = true;
                 }
-                if (m_currentPiecePosition.x + 1 <= 7 && (a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 2] > 0 || a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 2] == 0)) {
+                if (m_currentPiecePosition.x + 1 <= 7 && (a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 2] > 0 || a_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y - 2] == 0)) {
                     b_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y - 2] = true;
                 }
             }

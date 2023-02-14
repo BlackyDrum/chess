@@ -39,6 +39,8 @@ private:
     sf::SoundBuffer b_capture;
     sf::Sound s_capture;
 
+    std::pair<sf::RectangleShape, sf::RectangleShape> m_posSquares;
+
     /*
     * Initialize starting position
     * Black Pieces:
@@ -143,6 +145,7 @@ public:
     std::vector<sf::CircleShape> getCircle() const { return m_circles; }
     std::vector<sf::Sprite> getPawnPromotionQueensW() const { return m_pawnPromotionQueensW; }
     std::vector<sf::Sprite> getPawnPromotionQueensB() const { return m_pawnPromotionQueensB; }
+    std::pair<sf::RectangleShape, sf::RectangleShape> getSquares() const { return m_posSquares; }
     
 };
 
@@ -151,6 +154,13 @@ Chess::Chess() {
     m_pieceClicked = false;
     m_pawnPromotionCounterW = 0;
     m_pawnPromotionCounterB = 0;
+
+    m_posSquares.first.setSize(sf::Vector2f(tileSize,tileSize));
+    m_posSquares.second.setFillColor(sf::Color(255, 255, 126, 128));
+    m_posSquares.first.setPosition(-500,-500);
+    m_posSquares.first.setFillColor(sf::Color(244, 247, 118, 196));
+    m_posSquares.second.setSize(sf::Vector2f(tileSize, tileSize));
+    m_posSquares.second.setPosition(-500, -500);
 
     bool m_whiteKingMoved = false;
     bool m_blackKingMoved = false;
@@ -1458,6 +1468,9 @@ void Chess::move(sf::RenderWindow& window) {
                     a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                     m_whiteTurn = false;
                     s_pieceMove.play();
+
+                    m_posSquares.first.setPosition(m_currentPiecePosition.y * tileSize, m_currentPiecePosition.x * tileSize);
+                    m_posSquares.second.setPosition(col * tileSize, row * tileSize);
                 }
 
             }
@@ -1475,6 +1488,9 @@ void Chess::move(sf::RenderWindow& window) {
                     a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                     m_whiteTurn = false;
                     s_pieceMove.play();
+
+                    m_posSquares.first.setPosition(m_currentPiecePosition.y * tileSize, m_currentPiecePosition.x * tileSize);
+                    m_posSquares.second.setPosition(col * tileSize, row * tileSize);
                 }
             }
         }
@@ -1535,6 +1551,9 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = false;
                 s_pieceMove.play();
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
             }
 
         }
@@ -1579,6 +1598,9 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = false;
                 s_pieceMove.play();
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
             }
         }
         else if (m_currentPieceClicked == 30 || m_currentPieceClicked == 31) {
@@ -1633,6 +1655,9 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = false;
                 s_pieceMove.play();
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
             }
         }
         else if (m_currentPieceClicked == 40 || m_currentPieceClicked == 41 || m_currentPieceClicked == 42 || m_currentPieceClicked == 43 || m_currentPieceClicked == 44
@@ -1733,6 +1758,9 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = false;
                 s_pieceMove.play();
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
             }
         }
         else if (m_currentPieceClicked == 50) {
@@ -1790,12 +1818,20 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[row][col] = m_currentPieceClicked;
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = false;
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
+
                 if (castleWithRightRook && row == 7 && col == 6) {
+                    m_posSquares.first.setPosition(5* tileSize, 7* tileSize);
+                    m_posSquares.second.setPosition(col* tileSize, row* tileSize);
                     a_board[7][7] = 0;
                     a_board[7][5] = 11;
                     m_whiteRightRookMoved = true;
                 }
                 if (castleWithLeftRook && row == 7 && col == 2) {
+                    m_posSquares.first.setPosition(3* tileSize, 7* tileSize);
+                    m_posSquares.second.setPosition(col* tileSize, row* tileSize);
                     a_board[7][0] = 0;
                     a_board[7][3] = 10;
                     m_whiteLeftRookMoved = true;
@@ -1848,6 +1884,9 @@ void Chess::move(sf::RenderWindow& window) {
                     a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                     m_whiteTurn = true;
                     s_pieceMove.play();
+
+                    m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                    m_posSquares.second.setPosition(col* tileSize, row* tileSize);
                 }
 
             }
@@ -1865,6 +1904,9 @@ void Chess::move(sf::RenderWindow& window) {
                     a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                     m_whiteTurn = true;
                     s_pieceMove.play();
+
+                    m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                    m_posSquares.second.setPosition(col* tileSize, row* tileSize);
                 }
             }
         }
@@ -1925,6 +1967,9 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = true;
                 s_pieceMove.play();
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
             }
 
         }
@@ -1969,6 +2014,9 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = true;
                 s_pieceMove.play();
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
             }
         }
         else if (m_currentPieceClicked == -30 || m_currentPieceClicked == -31) {
@@ -2023,6 +2071,9 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = true;
                 s_pieceMove.play();
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
             }
         }
         else if (m_currentPieceClicked == -40 || m_currentPieceClicked == -41 || m_currentPieceClicked == -42 || m_currentPieceClicked == -43 || m_currentPieceClicked == -44
@@ -2122,6 +2173,9 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = true;
                 s_pieceMove.play();
+
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
             }
         }
         else if (m_currentPieceClicked == -50) {
@@ -2179,12 +2233,18 @@ void Chess::move(sf::RenderWindow& window) {
                 a_board[row][col] = m_currentPieceClicked;
                 a_board[m_currentPiecePosition.x][m_currentPiecePosition.y] = 0;
                 m_whiteTurn = true;
+                m_posSquares.first.setPosition(m_currentPiecePosition.y* tileSize, m_currentPiecePosition.x* tileSize);
+                m_posSquares.second.setPosition(col* tileSize, row* tileSize);
                 if (castleWithRightRook && row == 0 && col == 6) {
+                    m_posSquares.first.setPosition(5* tileSize, 0* tileSize);
+                    m_posSquares.second.setPosition(col* tileSize, row* tileSize);
                     a_board[0][7] = 0;
                     a_board[0][5] = -11;
                     m_blackRightRookMoved = true;
                 }
                 if (castleWithLeftRook && row == 0 && col == 2) {
+                    m_posSquares.first.setPosition(3* tileSize, 0 * tileSize);
+                    m_posSquares.second.setPosition(col* tileSize, row* tileSize);
                     a_board[0][0] = 0;
                     a_board[0][3] = -10;
                     m_blackLeftRookMoved = true;
@@ -2483,8 +2543,11 @@ int main()
         game.updateBoard();
         game.drawCircle(window);
         game.pawnPromotion();
+
         window.clear();
         window.draw(game.getBoard());
+        window.draw(game.getSquares().first);
+        window.draw(game.getSquares().second);
 
         for (auto& c : game.getCircle())
             window.draw(c);
@@ -2493,10 +2556,9 @@ int main()
         for (auto& p : game.getPawnPromotionQueensB())
             window.draw(p);
         for (auto& p : game.getPawnPromotionQueensW())
-            window.draw(p);
-
-        
+            window.draw(p);    
         window.display();
+
         game.deleteCircle();
     }
 

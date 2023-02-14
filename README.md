@@ -2,7 +2,8 @@
 
 C++/SFML - Chess.
 
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/111639941/218287184-0de5b516-d4b7-4e7a-91e5-2610c6976b77.gif)
+![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/111639941/218856315-59802d3e-3b42-4cc4-a5f3-fa643fc1607a.gif)
+
 
 
 

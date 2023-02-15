@@ -2,6 +2,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <Windows.h>
 
 const int windowWith = 768, windowHeight = 768;
 const int fields = 8;
@@ -389,7 +390,7 @@ void Chess::setCircle() {
             if (m_currentPiecePosition.x == 6) {
                 if (a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y] == 0)
                     m_circleBoard[m_currentPiecePosition.x - 1][m_currentPiecePosition.y] = true;
-                if (a_board[m_currentPiecePosition.x - 2][m_currentPiecePosition.y] == 0)
+                if (a_board[m_currentPiecePosition.x - 2][m_currentPiecePosition.y] == 0 && a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y] == 0)
                     m_circleBoard[m_currentPiecePosition.x - 2][m_currentPiecePosition.y] = true;
                 if (m_currentPiecePosition.x > 0 && m_currentPiecePosition.y > 0 && a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 1] < 0) {
                     m_circleBoard[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 1] = true;
@@ -744,7 +745,7 @@ void Chess::setCircle() {
             if (m_currentPiecePosition.x == 1) {
                 if (a_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y] == 0)
                     m_circleBoard[m_currentPiecePosition.x + 1][m_currentPiecePosition.y] = true;
-                if (a_board[m_currentPiecePosition.x + 2][m_currentPiecePosition.y] == 0)
+                if (a_board[m_currentPiecePosition.x + 2][m_currentPiecePosition.y] == 0 && a_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y] == 0)
                     m_circleBoard[m_currentPiecePosition.x + 2][m_currentPiecePosition.y] = true;
                 if (m_currentPiecePosition.x < 7 && m_currentPiecePosition.y > 0 && a_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y - 1] > 0) {
                     m_circleBoard[m_currentPiecePosition.x + 1][m_currentPiecePosition.y - 1] = true;
@@ -1455,7 +1456,7 @@ void Chess::move(sf::RenderWindow& window) {
             if (m_currentPiecePosition.x == 6) {
                 if (a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y] == 0)
                     b_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y] = true;
-                if (a_board[m_currentPiecePosition.x - 2][m_currentPiecePosition.y] == 0)
+                if (a_board[m_currentPiecePosition.x - 2][m_currentPiecePosition.y] == 0 && a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y] == 0)
                     b_board[m_currentPiecePosition.x - 2][m_currentPiecePosition.y] = true;
                 if (m_currentPiecePosition.x > 0 && m_currentPiecePosition.y > 0 && a_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 1] < 0)
                     b_board[m_currentPiecePosition.x - 1][m_currentPiecePosition.y - 1] = true;
@@ -1871,7 +1872,7 @@ void Chess::move(sf::RenderWindow& window) {
             if (m_currentPiecePosition.x == 1) {
                 if (a_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y] == 0)
                     b_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y] = true;
-                if (a_board[m_currentPiecePosition.x + 2][m_currentPiecePosition.y] == 0)
+                if (a_board[m_currentPiecePosition.x + 2][m_currentPiecePosition.y] == 0 && a_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y] == 0)
                     b_board[m_currentPiecePosition.x + 2][m_currentPiecePosition.y] = true;
                 if (m_currentPiecePosition.x < 7 && m_currentPiecePosition.y > 0 && a_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y - 1] > 0)
                     b_board[m_currentPiecePosition.x + 1][m_currentPiecePosition.y - 1] = true;
@@ -2520,6 +2521,11 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(windowWith, windowHeight), "Chess!",sf::Style::Close);
     window.setFramerateLimit(60);
+
+    /*
+    HWND windows = FindWindowA("ConsoleWindowClass", NULL);
+    ShowWindow(windows, 0);
+    */
 
     Chess game{};
     if (!game.loadAssets()) {

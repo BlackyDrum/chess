@@ -18,7 +18,7 @@ Download the latest release : https://github.com/BlackyDrum/cpp-sfml-chess/relea
 # How to run main.cpp
 
 ## Requirements
-1. A C++ compiler
+1. A C++ compiler (g++)
 2. SFML library installed
 
 ## Steps

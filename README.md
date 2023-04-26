@@ -27,7 +27,7 @@ Download the latest release : https://github.com/BlackyDrum/cpp-sfml-chess/relea
 3. Navigate to the src directory.
 4. Run the following command to compile the code:
 ```
-g++ main.cpp -o main -lsfml-graphics -lsfml-window -lsfml-system
+g++ main.cpp -o main -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 ```
 4. Execute the binary file by running the following command:
 ```

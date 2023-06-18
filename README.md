@@ -1,42 +1,51 @@
-# cpp-sfml-chess
+# Chess in C++/SFML
 
-C++/SFML - Chess.
+This is a C++ project that implements a simple chess game using SFML.<br>
 
 ![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/111639941/218856315-59802d3e-3b42-4cc4-a5f3-fa643fc1607a.gif)
 
 
+## Not implemented yet
+- Checkmate
+- En passant
 
-
-# How to run
-Download the latest release : https://github.com/BlackyDrum/cpp-sfml-chess/releases
-
-## Not Implemented yet
-- En Passant
-- Check for check
-
-
-# How to run main.cpp
-
-## Requirements
-1. A C++ compiler (g++)
-2. SFML library installed
-
-## Steps
-1. Clone the repository to your local machine.
-2. Open the terminal/command prompt and navigate to the repository directory.
-3. Navigate to the src directory.
-4. Run the following command to compile the code:
+## Prerequisites
+Before running, make sure you have the following installed on your system:
+-   SFML library: You can download SFML from the official website ([https://www.sfml-dev.org/](https://www.sfml-dev.org/)) and follow the installation instructions for your operating system, for example on Debian-based systems:
 ```
-g++ main.cpp -o main -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+$ sudo apt-get install libsfml-dev
 ```
-4. Execute the binary file by running the following command:
+- OpenGL library: You can install the library with the following command:
 ```
-./main
+$ sudo apt-get install libglu1-mesa-dev mesa-common-dev
 ```
+- A C++ compiler, e.g. ``GCC``
+```
+$ sudo apt-get install build-essential
+```
+- On Windows, make sure to set the ``SFML_PATH`` variable to the root path of the SFML library:
+```
+set SFML_PATH=C:\path\to\sfml
+```
+ 
+## Build using Makefile
+If you have ``GNU Make`` installed on your system, you can use the included ``Makefile`` to build the project.
 
-## Note
-The above commands assume that SFML is installed on your system. If you encounter an error, make sure to install SFML and add it to your system's PATH.
-
-
-
-Video Example: https://www.youtube.com/watch?v=yHrrNcDqzk8
+1. Clone the repository to your local machine:
+```
+$ git clone https://github.com/BlackyDrum/chess.git
+```
+2. Change to the cloned directory:
+```
+$ cd chess
+```
+3. Use make to build the project. The executable ``chess`` will be generated in the root directory.
+```
+$ make
+```
+4. Run the binary file (or double click the .exe on Windows):
+```
+$ ./chess
+```
+<strong>Note: If you encounter any problems on Windows trying to run ``chess.exe``, make sure to put the .dll in the same directory as the ``chess.exe``.
+You can find the .dll files in the official SFML ``bin`` folder.</strong>

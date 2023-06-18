@@ -1112,14 +1112,14 @@ bool Chess::loadAssets() {
 
     // load pieces
     if (!t_blackRook.loadFromFile("assets/b_rook_png_128px.png") || !t_blackKnight.loadFromFile("assets/b_knight_png_128px.png") || !t_blackBishop.loadFromFile("assets/b_bishop_png_128px.png") ||
-        !t_blackQueen.loadFromFile("assets/b_queen_png_128px.png") || !t_blackKing.loadFromFile("assets/b_king_png_128px.png") || !t_blackPawn.loadFromFile("assets/b_pawn_png_128px.png") || 
+        !t_blackQueen.loadFromFile("assets/b_queen_png_128px.png") || !t_blackKing.loadFromFile("assets/b_king_png_128px.png") || !t_blackPawn.loadFromFile("assets/b_pawn_png_128px.png") ||
         !t_whiteRook.loadFromFile("assets/w_rook_png_128px.png") || !t_whiteKnight.loadFromFile("assets/w_knight_png_128px.png") || !t_whiteBishop.loadFromFile("assets/w_bishop_png_128px.png") ||
         !t_whiteQueen.loadFromFile("assets/w_queen_png_128px.png") || !t_whiteKing.loadFromFile("assets/w_king_png_128px.png") || !t_whitePawn.loadFromFile("assets/w_pawn_png_128px.png")) {
         std::cout << "Error opening pieces!" << std::endl;
         return false;
     }
 
-    if (!b_pieceMove.loadFromFile("sounds/move-self.wav") || !b_capture.loadFromFile("sounds/capture.wav")) {
+    if (!b_pieceMove.loadFromFile("assets/sounds/move-self.wav") || !b_capture.loadFromFile("assets/sounds/capture.wav")) {
         std::cout << "Error opening sound files!" << std::endl;
         return false;
     }
@@ -1403,7 +1403,6 @@ void Chess::move(sf::RenderWindow& window) {
 
     int row = sf::Mouse::getPosition(window).y / tileSize;
     int col = sf::Mouse::getPosition(window).x / tileSize;
-    std::cout << a_board[row][col] << std::endl;
 
     if (!m_pieceClicked) {
         m_pieceClicked = true;

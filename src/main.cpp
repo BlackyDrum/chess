@@ -2,7 +2,6 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <Windows.h>
 
 const int windowWith = 768, windowHeight = 768;
 const int fields = 8;

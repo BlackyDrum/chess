@@ -49,3 +49,6 @@ $ ./chess
 ```
 <strong>Note: If you encounter any problems on Windows trying to run ``chess.exe``, make sure to put the .dll in the same directory as the ``chess.exe``.
 You can find the .dll files in the official SFML ``bin`` folder.</strong>
+
+## Acknowledgements
+-   <strong>SFML</strong>: Simple and Fast Multimedia Library ([https://www.sfml-dev.org/](https://www.sfml-dev.org/))

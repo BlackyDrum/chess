@@ -2,7 +2,9 @@
 
 void Run()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "Chess", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Chess", sf::Style::Close);
+
+    Board board;
 
     while (window.isOpen())
     {
@@ -14,6 +16,8 @@ void Run()
         }
 
         window.clear();
+
+		board.Draw(window);
 
         window.display();
     }

@@ -23,9 +23,15 @@
     <ClCompile Include="src\Chess\Chess.cpp">
       <Filter>Source Files\Chess</Filter>
     </ClCompile>
+    <ClCompile Include="src\Chess\Board.cpp">
+      <Filter>Source Files\Chess</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Chess\Chess.h">
+      <Filter>Header Files\Chess</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Chess\Board.h">
       <Filter>Header Files\Chess</Filter>
     </ClInclude>
   </ItemGroup>

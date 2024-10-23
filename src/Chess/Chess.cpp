@@ -38,8 +38,7 @@ void Run()
 
         for (const auto& piece : pieces)
         {
-            if (piece)
-                piece->Draw(window);
+            piece->Draw(window);
         }
 
         window.display();

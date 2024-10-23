@@ -7,10 +7,10 @@ Piece::Piece(const std::string& filename, size_t x, size_t y, bool isWhite, Piec
     m_Position = sf::Vector2i(x, y);
 
     sf::FloatRect spriteBounds = m_PieceSprite.getLocalBounds();
-    m_PieceSprite.setOrigin(spriteBounds.width / 2.0, spriteBounds.height / 2.0);
-    m_PieceSprite.setPosition((x * SQUARE_SIZE) + SQUARE_SIZE / 2, (y * SQUARE_SIZE) + SQUARE_SIZE / 2);
+    m_PieceSprite.setOrigin(spriteBounds.width / 2.0f, spriteBounds.height / 2.0f);
+    m_PieceSprite.setPosition((x * SQUARE_SIZE) + SQUARE_SIZE / 2.0f, (y * SQUARE_SIZE) + SQUARE_SIZE / 2.0f);
 
-    m_PieceSprite.setScale(0.6, 0.6);
+    m_PieceSprite.setScale(0.6f, 0.6f);
 
     m_IsWhite = isWhite;
 

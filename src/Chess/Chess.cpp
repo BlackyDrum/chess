@@ -1,5 +1,6 @@
 #include <memory>
 #include <array>
+#include <iostream>
 
 #include "Chess/Chess.h"
 
@@ -23,16 +24,68 @@ void Run()
 
     InitPieces(pieces);
 
+    sf::Vector2i selectedPiecePosition(-1, -1);
+
+    bool isWhiteTurn = true;
+
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
+            {
                 window.close();
+            }
+            else if (event.type == sf::Event::MouseButtonPressed)
+            {
+                sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+                sf::Vector2i translatedPosition(mousePosition.x / SQUARE_SIZE, mousePosition.y / SQUARE_SIZE);
+
+                if (selectedPiecePosition != sf::Vector2i(-1, -1))
+                {
+                    for (const auto& piece : pieces)
+                    {
+                        if (piece->GetPosition() == translatedPosition)
+                        {
+                            selectedPiecePosition = translatedPosition;
+
+                            goto out;
+                        }
+                    }
+
+                    for (const auto& piece : pieces)
+                    {
+                        if (piece->GetPosition() == selectedPiecePosition)
+                        {
+                            piece->Move(translatedPosition);
+
+                            break;
+                        }
+                    }
+
+                    selectedPiecePosition = sf::Vector2i(-1, -1);
+                }
+
+                for (const auto& piece : pieces)
+                {
+                    if (piece->GetPosition() == translatedPosition)
+                    {
+                        selectedPiecePosition = translatedPosition;
+
+                        break;
+                    }
+                }
+
+            out:
+                break;
+
+            }
         }
 
         window.clear();
+
+
 
         board.Draw(window);
 

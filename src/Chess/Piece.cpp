@@ -19,6 +19,8 @@ Piece::Piece(const std::string& filename, size_t x, size_t y, bool isWhite, Piec
 
 void Piece::Draw(sf::RenderWindow& window)
 {
+	m_PieceSprite.setPosition((m_Position.x * SQUARE_SIZE) + SQUARE_SIZE / 2.0f, (m_Position.y * SQUARE_SIZE) + SQUARE_SIZE / 2.0f);
+
     window.draw(m_PieceSprite);
 }
 

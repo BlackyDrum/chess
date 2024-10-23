@@ -11,7 +11,9 @@ public:
 
     void Draw(sf::RenderWindow& window);
 
-    virtual void Move() = 0;
+    sf::Vector2i GetPosition() const { return m_Position; };
+
+    virtual void Move(sf::Vector2i& newPos) = 0;
 protected:
     PieceType m_PieceType;
 

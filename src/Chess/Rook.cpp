@@ -1,6 +1,6 @@
 #include "Chess/Rook.h"
 
-void Rook::Move()
+void Rook::Move(sf::Vector2i& newPos)
 {
-
+	m_Position = newPos;
 }

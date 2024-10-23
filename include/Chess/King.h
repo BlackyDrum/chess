@@ -11,5 +11,5 @@ public:
 
     }
 
-    void Move() override;
+    void Move(sf::Vector2i& newPos) override;
 };

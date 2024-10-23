@@ -7,7 +7,7 @@
 class Piece
 {
 public:
-    Piece(const std::string& filename, size_t x, size_t y, bool isWhite, PieceType type);
+    Piece(const std::string& filename, size_t x, size_t y, bool isWhite);
 
     void Draw(sf::RenderWindow& window);
 
@@ -15,10 +15,8 @@ public:
 
 	bool IsWhite() const { return m_IsWhite; };
 
-    virtual void Move(sf::Vector2i& newPos) = 0;
+    virtual bool Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces) = 0;
 protected:
-    PieceType m_PieceType;
-
     sf::Vector2i m_Position;
 private:
     sf::Texture m_PieceTexture;

@@ -5,11 +5,11 @@
 class King : public Piece
 {
 public:
-    King(const std::string& filename, size_t x, size_t y, bool isWhite, PieceType type)
-        : Piece(filename, x, y, isWhite, type)
+    King(const std::string& filename, size_t x, size_t y, bool isWhite)
+        : Piece(filename, x, y, isWhite)
     {
 
     }
 
-    void Move(sf::Vector2i& newPos) override;
+    bool Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces) override;
 };

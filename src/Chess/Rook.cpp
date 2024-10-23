@@ -1,6 +1,8 @@
 #include "Chess/Rook.h"
 
-void Rook::Move(sf::Vector2i& newPos)
+bool Rook::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces)
 {
 	m_Position = newPos;
+
+	return false;
 }

@@ -1,6 +1,6 @@
 #include "Chess/Piece.h"
 
-Piece::Piece(const std::string& filename, size_t x, size_t y, bool isWhite, PieceType type)
+Piece::Piece(const std::string& filename, size_t x, size_t y, bool isWhite)
 {
     LoadAssets(filename);
 
@@ -13,8 +13,6 @@ Piece::Piece(const std::string& filename, size_t x, size_t y, bool isWhite, Piec
     m_PieceSprite.setScale(0.6f, 0.6f);
 
     m_IsWhite = isWhite;
-
-    m_PieceType = type;
 }
 
 void Piece::Draw(sf::RenderWindow& window)

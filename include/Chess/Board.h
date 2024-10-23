@@ -5,12 +5,12 @@
 class Board
 {
 public:
-	Board();
+    Board();
 
-	void Draw(sf::RenderWindow& window);
+    void Draw(sf::RenderWindow& window);
 private:
-	sf::Texture m_BoardTexture;
-	sf::Sprite m_BoardSprite;
+    sf::Texture m_BoardTexture;
+    sf::Sprite m_BoardSprite;
 private:
-	void LoadAssets();
+    void LoadAssets();
 };

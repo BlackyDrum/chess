@@ -13,6 +13,8 @@ public:
 
     sf::Vector2i GetPosition() const { return m_Position; };
 
+	bool IsWhite() const { return m_IsWhite; };
+
     virtual void Move(sf::Vector2i& newPos) = 0;
 protected:
     PieceType m_PieceType;

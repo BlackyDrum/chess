@@ -24,7 +24,7 @@ void Run()
 
     InitPieces(pieces);
 
-    sf::Vector2i selectedPiecePosition(-1, -1);
+	Piece* selectedPiece = nullptr;
 
     bool isWhiteTurn = true;
 
@@ -42,38 +42,49 @@ void Run()
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
                 sf::Vector2i translatedPosition(mousePosition.x / SQUARE_SIZE, mousePosition.y / SQUARE_SIZE);
 
-                if (selectedPiecePosition != sf::Vector2i(-1, -1))
+                if (selectedPiece)
+                {
+					// check if the piece is moved to the same position
+					if (selectedPiece->GetPosition() == translatedPosition)
+					{
+						selectedPiece = nullptr;
+                        break;
+					}
+
+					// check if same color piece is on the target position
+					for (const auto& piece : pieces)
+					{
+						if (piece->GetPosition() == translatedPosition)
+						{
+							if (isWhiteTurn && piece->IsWhite() || !isWhiteTurn && !piece->IsWhite())
+							{
+								selectedPiece = piece.get();
+
+								goto out;
+							}
+						}
+					}
+
+					selectedPiece->Move(translatedPosition);
+
+					isWhiteTurn = !isWhiteTurn;
+
+					selectedPiece = nullptr;
+                }
+                else
                 {
                     for (const auto& piece : pieces)
                     {
                         if (piece->GetPosition() == translatedPosition)
                         {
-                            selectedPiecePosition = translatedPosition;
+							if (isWhiteTurn && piece->IsWhite() || !isWhiteTurn && !piece->IsWhite())
+							{
+								selectedPiece = piece.get();
+								break;
+							}
 
-                            goto out;
+							selectedPiece = nullptr;
                         }
-                    }
-
-                    for (const auto& piece : pieces)
-                    {
-                        if (piece->GetPosition() == selectedPiecePosition)
-                        {
-                            piece->Move(translatedPosition);
-
-                            break;
-                        }
-                    }
-
-                    selectedPiecePosition = sf::Vector2i(-1, -1);
-                }
-
-                for (const auto& piece : pieces)
-                {
-                    if (piece->GetPosition() == translatedPosition)
-                    {
-                        selectedPiecePosition = translatedPosition;
-
-                        break;
                     }
                 }
 
@@ -84,8 +95,6 @@ void Run()
         }
 
         window.clear();
-
-
 
         board.Draw(window);
 

@@ -44,13 +44,6 @@ void Run()
 
                 if (selectedPiece)
                 {
-					// check if the piece is moved to the same position
-					if (selectedPiece->GetPosition() == translatedPosition)
-					{
-						selectedPiece = nullptr;
-                        break;
-					}
-
 					// check if same color piece is on the target position
 					for (const auto& piece : pieces)
 					{

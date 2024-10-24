@@ -112,7 +112,7 @@ void Run()
         {
             for (const auto& move : selectedPiece->GetPossibleMoves(pieces))
             {
-                float circleSize = 10.0f;
+                float circleSize = 5.0f;
 
                 sf::CircleShape circle(circleSize);
                 circle.setFillColor(sf::Color(255, 255, 255, 128));

@@ -116,15 +116,15 @@ void Run()
 
         board.Draw(window);
 
+        for (const auto& circle : circles)
+        {
+            window.draw(circle);
+        }
+
         for (const auto& piece : pieces)
         {
             if (piece)
                 piece->Draw(window);
-        }
-
-        for (const auto& circle : circles)
-        {
-            window.draw(circle);
         }
 
         window.display();

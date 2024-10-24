@@ -28,6 +28,10 @@ void Run()
 
     std::vector<sf::CircleShape> circles;
 
+	sf::RectangleShape selectedSquare(sf::Vector2f(SQUARE_SIZE, SQUARE_SIZE));
+    selectedSquare.setFillColor(sf::Color(255, 255, 126, 128));
+    selectedSquare.setPosition(-100, -100);
+
     bool isWhiteTurn = true;
 
     while (window.isOpen())
@@ -57,6 +61,8 @@ void Run()
 
                                 circles.clear();
 
+                                selectedSquare.setPosition((selectedPiece->GetPosition().x * SQUARE_SIZE), (selectedPiece->GetPosition().y * SQUARE_SIZE));
+
                                 goto out;
                             }
                         }
@@ -67,6 +73,8 @@ void Run()
                         isWhiteTurn = !isWhiteTurn;
 
                         circles.clear();
+
+                        selectedSquare.setPosition(-100, -100);
 
                         selectedPiece = nullptr;
                     }
@@ -82,6 +90,9 @@ void Run()
                             if (isWhiteTurn && piece->IsWhite() || !isWhiteTurn && !piece->IsWhite())
                             {
                                 selectedPiece = piece.get();
+
+                                selectedSquare.setPosition((selectedPiece->GetPosition().x * SQUARE_SIZE), (selectedPiece->GetPosition().y * SQUARE_SIZE));
+
                                 break;
                             }
 
@@ -115,6 +126,8 @@ void Run()
         window.clear();
 
         board.Draw(window);
+
+		window.draw(selectedSquare);
 
         for (const auto& circle : circles)
         {

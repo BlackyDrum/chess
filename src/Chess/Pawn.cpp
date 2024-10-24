@@ -11,7 +11,7 @@ bool Pawn::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 3
         // Check if the pawn is moving two squares forward
         if (newPos.y == m_Position.y + (2 * direction) && m_Position.y == startRow)
         {
-            if (IsPathBlocked(sf::Vector2i(m_Position.x, m_Position.y + direction), pieces))
+            if (IsPathBlocked(sf::Vector2i(m_Position.x, m_Position.y + (2 * direction)), pieces))
                 return false;
 
             m_Position = newPos;

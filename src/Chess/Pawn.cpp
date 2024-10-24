@@ -1,16 +1,5 @@
 #include "Chess/Pawn.h"
 
-bool Pawn::IsPathBlocked(const sf::Vector2i& start, const sf::Vector2i& end, const std::array<std::unique_ptr<Piece>, 32>& pieces)
-{
-    for (const auto& piece : pieces)
-    {
-        if (piece && piece->GetPosition() == end)
-            return true; // A piece is blocking the path
-    }
-
-    return false;
-}
-
 bool Pawn::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces)
 {
     int direction = IsWhite() ? -1 : +1;
@@ -22,7 +11,7 @@ bool Pawn::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 3
         // Check if the pawn is moving two squares forward
         if (newPos.y == m_Position.y + (2 * direction) && m_Position.y == startRow)
         {
-            if (IsPathBlocked(m_Position, sf::Vector2i(m_Position.x, m_Position.y + direction), pieces))
+            if (IsPathBlocked(sf::Vector2i(m_Position.x, m_Position.y + direction), pieces))
                 return false;
 
             m_Position = newPos;
@@ -32,7 +21,7 @@ bool Pawn::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 3
         // Check if the pawn is moving one square forward
         else if (newPos.y == m_Position.y + direction)
         {
-            if (IsPathBlocked(m_Position, sf::Vector2i(m_Position.x, m_Position.y + direction), pieces))
+            if (IsPathBlocked(sf::Vector2i(m_Position.x, m_Position.y + direction), pieces))
                 return false;
 
             m_Position = newPos;

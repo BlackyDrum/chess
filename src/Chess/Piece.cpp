@@ -27,3 +27,32 @@ void Piece::LoadAssets(const std::string& filename)
     m_PieceTexture.loadFromFile("assets/pieces/" + filename);
     m_PieceSprite.setTexture(m_PieceTexture);
 }
+
+bool Piece::IsPathBlocked(const sf::Vector2i& newPos, const std::array<std::unique_ptr<Piece>, 32>& pieces)
+{
+    for (const auto& piece : pieces)
+    {
+        if (piece && piece->GetPosition() == newPos)
+            return true;
+    }
+
+    return false;
+}
+
+bool Piece::CheckCapture(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces)
+{
+	for (auto& piece : pieces)
+	{
+		if (piece && piece->GetPosition() == newPos)
+		{
+			if (piece->IsWhite() != m_IsWhite)
+			{
+				piece.reset();
+
+				return true;
+			}
+		}
+	}
+
+	return false;
+}

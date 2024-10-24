@@ -18,6 +18,10 @@ public:
     virtual bool Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces) = 0;
 protected:
     sf::Vector2i m_Position;
+protected:
+    bool IsPathBlocked(const sf::Vector2i& newPos, const std::array<std::unique_ptr<Piece>, 32>& pieces);
+
+	bool CheckCapture(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces);
 private:
     sf::Texture m_PieceTexture;
     sf::Sprite m_PieceSprite;

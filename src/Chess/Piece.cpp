@@ -17,7 +17,7 @@ Piece::Piece(const std::string& filename, size_t x, size_t y, bool isWhite)
 
 void Piece::Draw(sf::RenderWindow& window)
 {
-	m_PieceSprite.setPosition((m_Position.x * SQUARE_SIZE) + SQUARE_SIZE / 2.0f, (m_Position.y * SQUARE_SIZE) + SQUARE_SIZE / 2.0f);
+    m_PieceSprite.setPosition((m_Position.x * SQUARE_SIZE) + SQUARE_SIZE / 2.0f, (m_Position.y * SQUARE_SIZE) + SQUARE_SIZE / 2.0f);
 
     window.draw(m_PieceSprite);
 }
@@ -41,18 +41,18 @@ bool Piece::IsPathBlocked(const sf::Vector2i& newPos, const std::array<std::uniq
 
 bool Piece::CheckCapture(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces)
 {
-	for (auto& piece : pieces)
-	{
-		if (piece && piece->GetPosition() == newPos)
-		{
-			if (piece->IsWhite() != m_IsWhite)
-			{
-				piece.reset();
+    for (auto& piece : pieces)
+    {
+        if (piece && piece->GetPosition() == newPos)
+        {
+            if (piece->IsWhite() != m_IsWhite)
+            {
+                piece.reset();
 
-				return true;
-			}
-		}
-	}
+                return true;
+            }
+        }
+    }
 
-	return false;
+    return false;
 }

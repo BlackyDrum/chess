@@ -24,7 +24,9 @@ void Run()
 
     InitPieces(pieces);
 
-	Piece* selectedPiece = nullptr;
+    Piece* selectedPiece = nullptr;
+
+    std::vector<sf::CircleShape> circles;
 
     bool isWhiteTurn = true;
 
@@ -44,24 +46,32 @@ void Run()
 
                 if (selectedPiece)
                 {
-					// check if same color piece is on the target position
-					for (const auto& piece : pieces)
-					{
-						if (piece && piece->GetPosition() == translatedPosition)
-						{
-							if (isWhiteTurn && piece->IsWhite() || !isWhiteTurn && !piece->IsWhite())
-							{
-								selectedPiece = piece.get();
+                    // check if same color piece is on the target position
+                    for (const auto& piece : pieces)
+                    {
+                        if (piece && piece->GetPosition() == translatedPosition)
+                        {
+                            if (isWhiteTurn && piece->IsWhite() || !isWhiteTurn && !piece->IsWhite())
+                            {
+                                selectedPiece = piece.get();
 
-								goto out;
-							}
-						}
-					}
+                                circles.clear();
+
+                                goto out;
+                            }
+                        }
+                    }
 
                     if (selectedPiece->Move(translatedPosition, pieces))
+                    {
                         isWhiteTurn = !isWhiteTurn;
 
-					selectedPiece = nullptr;
+                        circles.clear();
+
+                        selectedPiece = nullptr;
+                    }
+
+                    //selectedPiece = nullptr;
                 }
                 else
                 {
@@ -69,13 +79,15 @@ void Run()
                     {
                         if (piece && piece->GetPosition() == translatedPosition)
                         {
-							if (isWhiteTurn && piece->IsWhite() || !isWhiteTurn && !piece->IsWhite())
-							{
-								selectedPiece = piece.get();
-								break;
-							}
+                            if (isWhiteTurn && piece->IsWhite() || !isWhiteTurn && !piece->IsWhite())
+                            {
+                                selectedPiece = piece.get();
+                                break;
+                            }
 
-							selectedPiece = nullptr;
+                            circles.clear();
+
+                            selectedPiece = nullptr;
                         }
                     }
                 }
@@ -85,14 +97,34 @@ void Run()
             }
         }
 
+        if (selectedPiece)
+        {
+            for (const auto& move : selectedPiece->GetPossibleMoves(pieces))
+            {
+                float circleSize = 10.0f;
+
+                sf::CircleShape circle(circleSize);
+                circle.setFillColor(sf::Color(255, 255, 255, 128));
+                circle.setOrigin(circleSize, circleSize);
+                circle.setPosition((move.x * SQUARE_SIZE) + SQUARE_SIZE / 2.0f, (move.y * SQUARE_SIZE) + SQUARE_SIZE / 2.0f);
+
+                circles.push_back(circle);
+            }
+        }
+
         window.clear();
 
         board.Draw(window);
 
         for (const auto& piece : pieces)
         {
-			if (piece)
+            if (piece)
                 piece->Draw(window);
+        }
+
+        for (const auto& circle : circles)
+        {
+            window.draw(circle);
         }
 
         window.display();

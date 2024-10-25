@@ -5,6 +5,8 @@ project(Chess)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set(SFML_ROOT_DIR "C:/Path/To/SFML" CACHE PATH "Path to SFML root directory")
+
 file(GLOB_RECURSE SOURCES src/*.cpp)
 file(GLOB_RECURSE HEADERS include/Chess/*.h)
 
@@ -33,3 +35,10 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     "${CMAKE_SOURCE_DIR}/assets" $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets
 )
+
+if (WIN32)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        "${SFML_ROOT_DIR}/bin/openal32.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    )
+endif()

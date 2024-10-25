@@ -30,7 +30,7 @@ This project is a chess game developed using C++ and SFML.
    ```
 3. Configure and build the project with CMake
    ```bash
-   cmake ..
+   cmake -DSFML_ROOT="C:/Path/To/SFML" ..
    cmake --build . --config Release
    ```
 4. Run the executable  located in the `build/Release/` folder

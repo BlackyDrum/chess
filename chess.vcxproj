@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Chess\Audio.cpp" />
     <ClCompile Include="src\Chess\Board.cpp" />
     <ClCompile Include="src\Chess\Chess.cpp" />
     <ClCompile Include="src\Chess\Pieces\Bishop.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Chess\Audio.h" />
     <ClInclude Include="include\Chess\Board.h" />
     <ClInclude Include="include\Chess\Chess.h" />
     <ClInclude Include="include\Chess\Pieces\Bishop.h" />

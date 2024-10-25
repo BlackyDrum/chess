@@ -53,6 +53,9 @@
     <ClCompile Include="src\Chess\Pieces\Rook.cpp">
       <Filter>Source Files\Chess\Pieces</Filter>
     </ClCompile>
+    <ClCompile Include="src\Chess\Audio.cpp">
+      <Filter>Source Files\Chess</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Chess\Chess.h">
@@ -81,6 +84,9 @@
     </ClInclude>
     <ClInclude Include="include\Chess\Pieces\Rook.h">
       <Filter>Header Files\Chess\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Chess\Audio.h">
+      <Filter>Header Files\Chess</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

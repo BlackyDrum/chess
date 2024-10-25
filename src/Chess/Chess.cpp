@@ -32,6 +32,8 @@ void Run()
     selectedSquare.setFillColor(sf::Color(255, 255, 126, 128));
     selectedSquare.setPosition(-100, -100);
 
+    Audio audio;
+
     bool isWhiteTurn = true;
 
     while (window.isOpen())
@@ -71,6 +73,8 @@ void Run()
                     if (selectedPiece->Move(translatedPosition, pieces))
                     {
                         isWhiteTurn = !isWhiteTurn;
+
+                        audio.PlayMoveSound();
 
                         circles.clear();
 

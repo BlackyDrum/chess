@@ -49,6 +49,8 @@ bool Piece::CheckCapture(const sf::Vector2i& newPos, std::array<std::unique_ptr<
             {
                 piece.reset();
 
+                m_Audio.PlayCaptureSound();
+
                 return true;
             }
         }

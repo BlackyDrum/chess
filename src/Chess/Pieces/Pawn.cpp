@@ -43,6 +43,8 @@ bool Pawn::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 3
                     m_Position = newPos;
                     piece.reset();
 
+                    m_Audio.PlayCaptureSound();
+
                     return true;
                 }
             }

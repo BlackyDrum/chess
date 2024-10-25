@@ -1,4 +1,4 @@
-#include "Chess/Knight.h"
+#include "Chess/Pieces/Knight.h"
 
 bool Knight::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces)
 {

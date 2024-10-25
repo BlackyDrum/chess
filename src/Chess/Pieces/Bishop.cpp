@@ -1,4 +1,4 @@
-#include "Chess/Bishop.h"
+#include "Chess/Pieces/Bishop.h"
 
 bool Bishop::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces)
 {

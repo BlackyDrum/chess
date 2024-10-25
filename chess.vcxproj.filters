@@ -32,25 +32,25 @@
     <ClCompile Include="src\Chess\Board.cpp">
       <Filter>Source Files\Chess</Filter>
     </ClCompile>
-    <ClCompile Include="src\Chess\Piece.cpp">
+    <ClCompile Include="src\Chess\Pieces\Bishop.cpp">
       <Filter>Source Files\Chess\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="src\Chess\Rook.cpp">
+    <ClCompile Include="src\Chess\Pieces\King.cpp">
       <Filter>Source Files\Chess\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="src\Chess\Knight.cpp">
+    <ClCompile Include="src\Chess\Pieces\Knight.cpp">
       <Filter>Source Files\Chess\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="src\Chess\Bishop.cpp">
+    <ClCompile Include="src\Chess\Pieces\Pawn.cpp">
       <Filter>Source Files\Chess\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="src\Chess\Queen.cpp">
+    <ClCompile Include="src\Chess\Pieces\Piece.cpp">
       <Filter>Source Files\Chess\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="src\Chess\King.cpp">
+    <ClCompile Include="src\Chess\Pieces\Queen.cpp">
       <Filter>Source Files\Chess\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="src\Chess\Pawn.cpp">
+    <ClCompile Include="src\Chess\Pieces\Rook.cpp">
       <Filter>Source Files\Chess\Pieces</Filter>
     </ClCompile>
   </ItemGroup>
@@ -61,25 +61,25 @@
     <ClInclude Include="include\Chess\Board.h">
       <Filter>Header Files\Chess</Filter>
     </ClInclude>
-    <ClInclude Include="include\Chess\Piece.h">
+    <ClInclude Include="include\Chess\Pieces\Bishop.h">
       <Filter>Header Files\Chess\Pieces</Filter>
     </ClInclude>
-    <ClInclude Include="include\Chess\Rook.h">
+    <ClInclude Include="include\Chess\Pieces\King.h">
       <Filter>Header Files\Chess\Pieces</Filter>
     </ClInclude>
-    <ClInclude Include="include\Chess\Knight.h">
+    <ClInclude Include="include\Chess\Pieces\Knight.h">
       <Filter>Header Files\Chess\Pieces</Filter>
     </ClInclude>
-    <ClInclude Include="include\Chess\Bishop.h">
+    <ClInclude Include="include\Chess\Pieces\Pawn.h">
       <Filter>Header Files\Chess\Pieces</Filter>
     </ClInclude>
-    <ClInclude Include="include\Chess\Queen.h">
+    <ClInclude Include="include\Chess\Pieces\Piece.h">
       <Filter>Header Files\Chess\Pieces</Filter>
     </ClInclude>
-    <ClInclude Include="include\Chess\King.h">
+    <ClInclude Include="include\Chess\Pieces\Queen.h">
       <Filter>Header Files\Chess\Pieces</Filter>
     </ClInclude>
-    <ClInclude Include="include\Chess\Pawn.h">
+    <ClInclude Include="include\Chess\Pieces\Rook.h">
       <Filter>Header Files\Chess\Pieces</Filter>
     </ClInclude>
   </ItemGroup>

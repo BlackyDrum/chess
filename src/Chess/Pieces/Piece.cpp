@@ -1,4 +1,4 @@
-#include "Chess/Piece.h"
+#include "Chess/Pieces/Piece.h"
 
 Piece::Piece(const std::string& filename, size_t x, size_t y, bool isWhite)
 {

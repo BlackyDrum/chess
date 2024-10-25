@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Chess/Piece.h"
+#include "Chess/Pieces/Piece.h"
 
-class Queen : public Piece
+class Pawn : public Piece
 {
 public:
-    Queen(const std::string& filename, size_t x, size_t y, bool isWhite)
+    Pawn(const std::string& filename, size_t x, size_t y, bool isWhite)
         : Piece(filename, x, y, isWhite) {}
 
     bool Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces) override;

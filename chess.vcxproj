@@ -136,27 +136,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Chess\Bishop.cpp" />
     <ClCompile Include="src\Chess\Board.cpp" />
     <ClCompile Include="src\Chess\Chess.cpp" />
-    <ClCompile Include="src\Chess\King.cpp" />
-    <ClCompile Include="src\Chess\Knight.cpp" />
-    <ClCompile Include="src\Chess\Pawn.cpp" />
-    <ClCompile Include="src\Chess\Piece.cpp" />
-    <ClCompile Include="src\Chess\Queen.cpp" />
-    <ClCompile Include="src\Chess\Rook.cpp" />
+    <ClCompile Include="src\Chess\Pieces\Bishop.cpp" />
+    <ClCompile Include="src\Chess\Pieces\King.cpp" />
+    <ClCompile Include="src\Chess\Pieces\Knight.cpp" />
+    <ClCompile Include="src\Chess\Pieces\Pawn.cpp" />
+    <ClCompile Include="src\Chess\Pieces\Piece.cpp" />
+    <ClCompile Include="src\Chess\Pieces\Queen.cpp" />
+    <ClCompile Include="src\Chess\Pieces\Rook.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Chess\Bishop.h" />
     <ClInclude Include="include\Chess\Board.h" />
     <ClInclude Include="include\Chess\Chess.h" />
-    <ClInclude Include="include\Chess\King.h" />
-    <ClInclude Include="include\Chess\Knight.h" />
-    <ClInclude Include="include\Chess\Pawn.h" />
-    <ClInclude Include="include\Chess\Piece.h" />
-    <ClInclude Include="include\Chess\Queen.h" />
-    <ClInclude Include="include\Chess\Rook.h" />
+    <ClInclude Include="include\Chess\Pieces\Bishop.h" />
+    <ClInclude Include="include\Chess\Pieces\King.h" />
+    <ClInclude Include="include\Chess\Pieces\Knight.h" />
+    <ClInclude Include="include\Chess\Pieces\Pawn.h" />
+    <ClInclude Include="include\Chess\Pieces\Piece.h" />
+    <ClInclude Include="include\Chess\Pieces\Queen.h" />
+    <ClInclude Include="include\Chess\Pieces\Rook.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-#include "Chess/Pawn.h"
+#include "Chess/Pieces/Pawn.h"
 
 bool Pawn::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces)
 {

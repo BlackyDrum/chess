@@ -1,4 +1,4 @@
-#include "Chess/Rook.h"
+#include "Chess/Pieces/Rook.h"
 
 bool Rook::Move(const sf::Vector2i& newPos, std::array<std::unique_ptr<Piece>, 32>& pieces)
 {

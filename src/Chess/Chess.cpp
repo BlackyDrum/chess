@@ -4,13 +4,13 @@
 
 #include "Chess/Chess.h"
 
-#include "Chess/Piece.h"
-#include "Chess/Rook.h"
-#include "Chess/Knight.h"
-#include "Chess/Bishop.h"
-#include "Chess/Queen.h"
-#include "Chess/King.h"
-#include "Chess/Pawn.h"
+#include "Chess/Pieces/Piece.h"
+#include "Chess/Pieces/Rook.h"
+#include "Chess/Pieces/Knight.h"
+#include "Chess/Pieces/Bishop.h"
+#include "Chess/Pieces/Queen.h"
+#include "Chess/Pieces/King.h"
+#include "Chess/Pieces/Pawn.h"
 
 void InitPieces(std::array<std::unique_ptr<Piece>, 32>& pieces);
 
